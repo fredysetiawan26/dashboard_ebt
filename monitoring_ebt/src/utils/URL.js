@@ -17,4 +17,6 @@ export const API_URL_BULANAN = "http://10.46.10.128:5000/ebt/akumulasi/harian/";
 export const API_URL_TAHUNAN = "http://10.46.10.128:5000/ebt/akumulasi/bulanan/";
 export const API_URL_POTENSI = "http://10.46.10.128:3001/site/outdoor/";
 export const API_URL_POTENSI_IRADIASI = "http://10.46.10.128:3001/site/outdoor/solar_power";
+export const API_URL_POTENSI_ANGIN = "http://10.46.10.128:3001/site/outdoor/wind_speed";
+
 

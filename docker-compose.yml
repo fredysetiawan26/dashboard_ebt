@@ -1,11 +1,14 @@
 version: "3"
 services:
   monitoring_ebt:
+    restart: always
     build: ./monitoring_ebt
     ports:
       - "5005:5005"
     stdin_open: true
     tty: true
-    # volumes:
-    #   - /app/node_modules
-    #   - ./monitoring_ebt:/app
+    volumes:
+      - ./monitoring_ebt:/app
+      # - /app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true

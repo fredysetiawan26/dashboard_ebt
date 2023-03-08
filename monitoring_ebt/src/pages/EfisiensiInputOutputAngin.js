@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 import axios from 'axios';
-import { API_URL_SURYA_AC, API_URL_POTENSI_IRADIASI } from '../utils/URL';
+import { API_URL_TURBIN, API_URL_POTENSI_ANGIN } from '../utils/URL';
 import { useState } from 'react';
 import { fShortenCommaNumber } from '../utils/formatNumber';
 import { fDateTime } from '../utils/formatTime';
@@ -10,57 +10,50 @@ import { LIST_DayaPerLuasan, LIST_EFISIENSI, LIST_POWER, LIST_TIMEHOUR } from '.
 import WidgetBox from './WidgetBox';
 import { useEffect } from 'react';
 
-export default function EfisiensiInputOutputMatahari() {
+export default function EfisiensiInputOutputAngin() {
     useTheme();
 
-    const [sensorDataSuryaAC, setSensorDataSuryaAC] = useState([])
-    // const [sensorDataSuryaDC, setSensorDataSuryaDC] = useState([])
-    const [sensorDataSPM, setSensorDataSPM] = useState([])
+    const [sensorDataAngin, setSensorDataAngin] = useState([])
+    const [sensorDataAnemo, setSensorDataAnemo] = useState([])
 
     useEffect(() => {
-        if (!sensorDataSuryaAC.length) {
+        if (!sensorDataAngin.length) {
             (async () => {
-                const res = await axios.get(API_URL_SURYA_AC)
-                // const has = await axios.get(API_URL_SURYA_DC)
-                const dataValueSuryaAC = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
-                // const dataValueSuryaDC = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
-                setSensorDataSuryaAC(dataValueSuryaAC)
-                // setSensorDataSuryaDC(dataValueSuryaDC)
+                const res = await axios.get(API_URL_TURBIN)
+                const dataValueAngin = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
+                setSensorDataAngin(dataValueAngin)
             })()
         }
 
         setInterval(() => {
             (async () => {
-                const res = await axios.get(API_URL_SURYA_AC)
-                // const has = await axios.get(API_URL_SURYA_DC)
-                const dataValueSuryaAC = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
-                // const dataValueSuryaDC = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
-                setSensorDataSuryaAC(dataValueSuryaAC)
-                // setSensorDataSuryaDC(dataValueSuryaDC)
+                const res = await axios.get(API_URL_TURBIN)
+                const dataValueAngin = res.data.value.sort((a, b) => new Date(a.db_created_at) - new Date(b.db_created_at))
+                setSensorDataAngin(dataValueAngin)
             })()
         }, 60 * 1000)
     }, []);
 
     useEffect(() => {
-        if (!sensorDataSPM.length) {
+        if (!sensorDataAnemo.length) {
             (async () => {
-                const raw = await axios.get(API_URL_POTENSI_IRADIASI)
-                const dataValueSPM = raw.data.data.values.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                setSensorDataSPM(dataValueSPM)
+                const raw = await axios.get(API_URL_POTENSI_ANGIN)
+                const dataValueAnemo = raw.data.data.values.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                setSensorDataAnemo(dataValueAnemo)
             })()
         }
 
         setInterval(() => {
             (async () => {
-                const raw = await axios.get(API_URL_POTENSI_IRADIASI)
-                const dataValueSPM = raw.data.data.values.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                setSensorDataSPM(dataValueSPM)
+                const raw = await axios.get(API_URL_POTENSI_ANGIN)
+                const dataValueAnemo = raw.data.data.values.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                setSensorDataAnemo(dataValueAnemo)
             })()
         }, 2.5 * 60 * 1000)
     }, []);
 
     // useEffect(() => {
-    //     if (!sensorDataSuryaAC.length || !sensorDataSPM) {
+    //     if (!sensorDataAngin.length || !sensorDataAnemo) {
     //         (async () => {
     //             const res = await axios.get(API_URL_SURYA_AC)
     //             const raw = await axios.get(API_URL_POTENSI_IRADIASI)
@@ -83,46 +76,46 @@ export default function EfisiensiInputOutputMatahari() {
     //     }, 60 * 1000)
     // }, []);
 
-    const currentDataSuryaAC = sensorDataSuryaAC[4]
-    const currentDataSPM = sensorDataSPM[0]
-    const db_created_at = [sensorDataSuryaAC[0]?.db_created_at, sensorDataSuryaAC[1]?.db_created_at, sensorDataSuryaAC[2]?.db_created_at, sensorDataSuryaAC[3]?.db_created_at, sensorDataSuryaAC[4]?.db_created_at]
-    const sun_created_at = [sensorDataSPM[24]?.created_at, sensorDataSPM[18]?.created_at, sensorDataSPM[12]?.created_at, sensorDataSPM[6]?.created_at, sensorDataSPM[0]?.created_at]
-    const power = [sensorDataSuryaAC[0]?.power, sensorDataSuryaAC[1]?.power, sensorDataSuryaAC[2]?.power, sensorDataSuryaAC[3]?.power, sensorDataSuryaAC[4]?.power]
-    const sun_power = [sensorDataSPM[24]?.value, sensorDataSPM[18]?.value, sensorDataSPM[12]?.value, sensorDataSPM[6]?.value, sensorDataSPM[0]?.value]
+    const currentDataAngin = sensorDataAngin[4]
+    const currentDataAnemo = sensorDataAnemo[0]
+    const db_created_at = [sensorDataAngin[0]?.db_created_at, sensorDataAngin[1]?.db_created_at, sensorDataAngin[2]?.db_created_at, sensorDataAngin[3]?.db_created_at, sensorDataAngin[4]?.db_created_at]
+    const wind_created_at = [sensorDataAnemo[24]?.created_at, sensorDataAnemo[18]?.created_at, sensorDataAnemo[12]?.created_at, sensorDataAnemo[6]?.created_at, sensorDataAnemo[0]?.created_at]
+    const power = [sensorDataAngin[0]?.power, sensorDataAngin[1]?.power, sensorDataAngin[2]?.power, sensorDataAngin[3]?.power, sensorDataAngin[4]?.power]
+    const wind_power = [sensorDataAnemo[24]?.value, sensorDataAnemo[18]?.value, sensorDataAnemo[12]?.value, sensorDataAnemo[6]?.value, sensorDataAnemo[0]?.value]
 
     return (
         <>
             <Container maxWidth="xl">
                 <Typography variant="h6" color={'black'} sx={{ mt: 0, mb: 2 }}>
-                    Data Monitoring Efisiensi Input Output Daya PV
+                    Data Monitoring Efisiensi Input Output Daya Turbin Angin
                 </Typography>
 
                 <Grid container spacing={3}>
 
                     <Grid item xs={12} sm={6} md={2}>
-                        <WidgetBox sx={{ py: 2 }} title="Efisiensi (%)" number={fShortenCommaNumber(LIST_EFISIENSI(power, LIST_DayaPerLuasan(sun_power))[4])} color="success" />
+                        <WidgetBox sx={{ py: 2 }} title="Efisiensi (%)" number={fShortenCommaNumber(LIST_EFISIENSI(power, wind_power)[4])} color="success" />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={5}>
-                        <WidgetBox sx={{ py: 2 }} title="Daya input terakhir diperbaharui" waktu={fDateTime(currentDataSPM?.created_at)} color="error" />
+                        <WidgetBox sx={{ py: 2 }} title="Kecepatan angin terakhir diperbaharui" waktu={fDateTime(currentDataAnemo?.created_at)} color="error" />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={5}>
-                        <WidgetBox sx={{ py: 2 }} title="Daya output terakhir diperbaharui" waktu={fDateTime(currentDataSuryaAC?.db_created_at)} color="primary" />
+                        <WidgetBox sx={{ py: 2 }} title="Daya output terakhir diperbaharui" waktu={fDateTime(currentDataAngin?.db_created_at)} color="primary" />
                     </Grid>
 
                     <Grid item xs={12} md={12} lg={6} marginBottom={5} >
                         <RealTimeGrafik
-                            title="Daya input PV"
+                            title="Kecepatan angin potensi"
                             columnWidth='50%'
-                            chartLabels={LIST_TIMEHOUR(sun_created_at)}
+                            chartLabels={LIST_TIMEHOUR(wind_created_at)}
 
                             chartData={[
                                 {
-                                    name: 'Daya input (W)',
+                                    name: 'Kecepatan angin (m/s)',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: LIST_DayaPerLuasan(sun_power)
+                                    data: LIST_POWER(wind_power)
                                 },
                             ]}
                         />
@@ -130,7 +123,7 @@ export default function EfisiensiInputOutputMatahari() {
 
                     <Grid item xs={12} md={12} lg={6} marginBottom={5} >
                         <RealTimeGrafik
-                            title="Daya output PV"
+                            title="Daya output turbin"
                             columnWidth='50%'
                             chartLabels={LIST_TIMEHOUR(db_created_at)}
                             chartData={[
@@ -146,7 +139,7 @@ export default function EfisiensiInputOutputMatahari() {
 
                     <Grid item xs={12} md={12} lg={12} marginBottom={5} >
                         <RealTimeGrafik
-                            title="Rasio daya output dan input"
+                            title="Rasio output dan input"
                             columnWidth='50%'
                             chartLabels={LIST_TIMEHOUR(db_created_at)}
                             chartData={[
@@ -154,7 +147,7 @@ export default function EfisiensiInputOutputMatahari() {
                                     name: 'Efisiensi daya (%)',
                                     type: 'line',
                                     fill: 'solid',
-                                    data: LIST_EFISIENSI(power, LIST_DayaPerLuasan(sun_power))
+                                    data: LIST_EFISIENSI(power, wind_power)
                                 },
                             ]}
                         />
