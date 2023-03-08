@@ -94,7 +94,7 @@ export default function Potensi() {
                             chartLabels={LIST_TIMEHOUR(anemo_created_at)}
                             chartData={[
                                 {
-                                    name: 'Daya (W)',
+                                    name: 'Kecepatan angin (m/s)',
                                     type: 'area',
                                     fill: 'gradient',
                                     data: LIST_POWER(wind_speed)
