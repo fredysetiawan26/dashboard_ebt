@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { fShortenCommaNumber } from '../utils/formatNumber';
 import { fDateTime } from '../utils/formatTime';
 import RealTimeGrafik from './RealTimeGrafik';
-import { LIST_DayaPerLuasan, LIST_EFISIENSI, LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
+import { LIST_EFISIENSI, LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
 import WidgetBox from './WidgetBox';
 import { useEffect } from 'react';
 

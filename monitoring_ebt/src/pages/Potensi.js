@@ -8,7 +8,7 @@ import { fDateTime } from '../utils/formatTime';
 import WidgetBox from './WidgetBox';
 import { useEffect } from 'react';
 import RealTimeGrafik from './RealTimeGrafik';
-import { LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
+import { LIST_POTENSI_SURYA, LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
 
 export default function Potensi() {
     useTheme();
@@ -57,7 +57,7 @@ export default function Potensi() {
                 <Grid marginBottom={5} container spacing={3}>
 
                     <Grid item xs={12} sm={6} md={6}>
-                        <WidgetBox title="Iradiasi Matahari (W/m2)" number={fShortenCommaNumber(currentDataSPM?.value)} color="warning" />
+                        <WidgetBox title="Iradiasi Matahari (W/m2)" number={fShortenCommaNumber(LIST_POTENSI_SURYA(sun_power)[4])} color="warning" />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={6}>
@@ -82,7 +82,7 @@ export default function Potensi() {
                                     name: 'Iradiasi Matahari (W/m2)',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: LIST_POWER(sun_power),
+                                    data: LIST_POTENSI_SURYA(sun_power),
                                 },
                             ]}
                         />

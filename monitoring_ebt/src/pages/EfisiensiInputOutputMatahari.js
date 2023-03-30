@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { fShortenCommaNumber } from '../utils/formatNumber';
 import { fDateTime } from '../utils/formatTime';
 import RealTimeGrafik from './RealTimeGrafik';
-import { LIST_DayaPerLuasan, LIST_EFISIENSI, LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
+import { LIST_DayaPerLuasan, LIST_EFISIENSI, LIST_POTENSI_SURYA, LIST_POWER, LIST_TIMEHOUR } from '../utils/DataList';
 import WidgetBox from './WidgetBox';
 import { useEffect } from 'react';
 
@@ -122,7 +122,7 @@ export default function EfisiensiInputOutputMatahari() {
                                     name: 'Daya input (W)',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: LIST_DayaPerLuasan(sun_power)
+                                    data: LIST_DayaPerLuasan(LIST_POTENSI_SURYA(sun_power))
                                 },
                             ]}
                         />
@@ -152,9 +152,9 @@ export default function EfisiensiInputOutputMatahari() {
                             chartData={[
                                 {
                                     name: 'Efisiensi daya (%)',
-                                    type: 'line',
-                                    fill: 'solid',
-                                    data: LIST_EFISIENSI(power, LIST_DayaPerLuasan(sun_power))
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: LIST_EFISIENSI(power, LIST_DayaPerLuasan(LIST_POTENSI_SURYA(sun_power)))
                                 },
                             ]}
                         />

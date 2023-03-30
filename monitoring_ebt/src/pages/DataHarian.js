@@ -153,7 +153,7 @@ export default function DataHarian() {
 
           <Grid item xs={12} md={12} lg={12} marginTop={1} marginBottom={5} >
             <RealTimeGrafik
-              title="Daya & Energi yang dihasilkan"
+              title="Daya yang dihasilkan"
               columnWidth='50%'
               chartLabels={LIST_POWER(db_created_at)}
               chartData={[
@@ -163,12 +163,12 @@ export default function DataHarian() {
                   fill: 'solid',
                   data: LIST_POWER(power)
                 },
-                {
-                  name: 'Energi (Wh)',
-                  type: 'area',
-                  fill: 'solid',
-                  data: LIST_POWER(energy)
-                },
+                // {
+                //   name: 'Energi (Wh)',
+                //   type: 'area',
+                //   fill: 'solid',
+                //   data: LIST_POWER(energy)
+                // },
               ]}
             />
           </Grid>

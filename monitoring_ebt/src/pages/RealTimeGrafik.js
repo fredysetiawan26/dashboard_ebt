@@ -24,7 +24,7 @@ export default function RealTimeGrafik({ title, chartData, chartLabels, columnWi
         fill: { type: chartData.map((i) => i.fill) },
         labels: chartLabels,
         yaxis: {
-            decimalsInFloat: 0,
+            decimalsInFloat: 1,
         },
         xaxis: {
             tickAmount: 5,

@@ -69,3 +69,17 @@ export function LIST_EFISIENSI(listA, listB) {
       )
 }
 
+
+export function LIST_POTENSI_SURYA(list) {
+  const listBaru = []
+    for (let i = 0; i < list.length; i++) {
+        //setelah kalibrasi
+        //rumus regresi
+        //y = (2*(10**-8))*(x**3)+(2*(10**-5))*x**2+(0.2277*x)+21.809
+        let kalibrated = (2*(10**-8))*(list[i]**3)+(2*(10**-5))*list[i]**2+(0.2277*list[i])+21.809
+        listBaru.push(kalibrated)
+    }
+    return (
+        listBaru
+    )
+}

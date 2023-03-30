@@ -152,16 +152,16 @@ export default function DataTahunan() {
 
           <Grid item xs={12} md={12} lg={12} marginTop={1} marginBottom={5} >
             <RealTimeGrafik
-              title="Daya & Energi yang dihasilkan"
+              title="Energi yang dihasilkan"
               columnWidth='20%'
               chartLabels={LIST_POWER(db_created_at)}
               chartData={[
-                {
-                  name: 'Daya (kW)',
-                  type: 'column',
-                  fill: 'solid',
-                  data: LIST_KILO(power)
-                },
+                // {
+                //   name: 'Daya (kW)',
+                //   type: 'column',
+                //   fill: 'solid',
+                //   data: LIST_KILO(power)
+                // },
                 {
                   name: 'Energy (kWh)',
                   type: 'column',
