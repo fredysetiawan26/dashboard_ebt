@@ -100,7 +100,7 @@ export default function EfisiensiInputOutputMatahari() {
                 <Grid container spacing={3}>
 
                     <Grid item xs={12} sm={6} md={2}>
-                        <WidgetBox sx={{ py: 2 }} title="Efisiensi (%)" number={fShortenCommaNumber(LIST_EFISIENSI(power, LIST_DayaPerLuasan(sun_power))[4])} color="success" />
+                        <WidgetBox sx={{ py: 2 }} title="Efisiensi (%)" number={fShortenCommaNumber(LIST_EFISIENSI(power, LIST_DayaPerLuasan(LIST_POTENSI_SURYA(sun_power)))[4])} color="success" />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={5}>
